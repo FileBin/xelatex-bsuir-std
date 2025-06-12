@@ -77,8 +77,8 @@
 \lefthyphenmin=2
 \righthyphenmin=2
 \tolerance=9999
-\emergencystretch=3pt
-\hyphenpenalty=5000
+\emergencystretch=100pt
+\hyphenpenalty=9900
 \exhyphenpenalty=100
 
 % нумерация страниц справа
@@ -255,12 +255,16 @@
 
 \newcommand{\eqt}[1]{
   \vbox{
-    \vspace{-2em}
     \[
       #1
     \]
-    \vspace{-2em}
   }
+}
+
+\newcommand{\heqt}[1]{
+  \[
+    #1
+  \]
 }
 
 \newcommand{\neqt}[1]{
@@ -305,11 +309,22 @@
   % - Не подгружать пакет geometry, отступы уже в соответсвии с приложением Л СТП 
   
   \setromanfont{Times New Roman}
-  \setmathfont{Cambria Math}
-
-  % Автоматическая Замена `--` на endash
-  \RequirePackage{xesearch}
-  \UndoBoundary{-}
-  \SearchList{dash}{\textendash}{--}
-
+  \setmathfont{XITS Math}
 \fi
+
+\DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
+  \newcommand{\makecyrmathletter}[1]{%
+  \begingroup\lccode`a=#1\lowercase{\endgroup
+  \Umathcode`a}="0 \csname symcyrletters\endcsname\space #1
+}
+\count255="409
+\loop\ifnum\count255<"44F
+\advance\count255 by 1
+\makecyrmathletter{\count255}
+\repeat
+
+% Автоматическая Замена `--` на endash
+\RequirePackage{xesearch}
+\UndoBoundary{-}
+\SearchList{dash}{\textendash}{--}
+
