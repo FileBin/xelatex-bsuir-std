@@ -238,7 +238,7 @@
 \DeclareTblrTemplate{capcont}{default}{Продолжение таблицы \thetable}
 
 % \DeclareTblrTemplate{caption-tag}{default}{Таблица~\thetable}
-\DeclareTblrTemplate{caption-sep}{default}{--}
+\DeclareTblrTemplate{caption-sep}{default}{\textendash{}}
 % \DeclareTblrTemplate{caption-text}{default}{\InsertTblrText{caption}}
 
 \DeclareTblrTemplate{caption}{default}{
@@ -322,9 +322,4 @@
 \advance\count255 by 1
 \makecyrmathletter{\count255}
 \repeat
-
-% Автоматическая Замена `--` на endash
-\RequirePackage{xesearch}
-\UndoBoundary{-}
-\SearchList{dash}{\textendash}{--}
 
